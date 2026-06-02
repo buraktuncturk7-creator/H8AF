@@ -132,6 +132,29 @@ button{
 </div>
 
 <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCyVCJ6QvOnanx4A0wQADVtemPC9Jka_dI",
+  authDomain: "h8af-8902d.firebaseapp.com",
+  projectId: "h8af-8902d",
+  storageBucket: "h8af-8902d.firebasestorage.app",
+  messagingSenderId: "763106464913",
+  appId: "1:763106464913:web:05d60cb00dd10ac3c99b30",
+  measurementId: "G-C30B6QYXH5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 let currentUser = "";
 
