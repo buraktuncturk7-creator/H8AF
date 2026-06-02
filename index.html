@@ -1,0 +1,202 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H8AF</title>
+
+<style>
+body{
+    margin:0;
+    background:#121212;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+#loginPage{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box{
+    background:#1e1e1e;
+    padding:25px;
+    border-radius:12px;
+    width:320px;
+    text-align:center;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#chatPage{
+    display:none;
+    padding:20px;
+}
+
+#messages{
+    background:#1e1e1e;
+    height:350px;
+    overflow-y:auto;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.message{
+    margin-bottom:8px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.server{
+    background:#1e1e1e;
+    padding:10px;
+    border-radius:10px;
+    margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loginPage">
+    <div class="box">
+        <h1>H8AF</h1>
+
+        <input
+            id="username"
+            type="text"
+            placeholder="Kullanıcı Adı">
+
+        <button onclick="login()">
+            Giriş Yap
+        </button>
+    </div>
+</div>
+
+<div id="chatPage">
+
+    <div class="topbar">
+        <h2>H8AF</h2>
+
+        <button
+            style="width:auto;padding:8px 12px"
+            onclick="logout()">
+            Çıkış
+        </button>
+    </div>
+
+    <div class="server">
+        <b>Minecraft Sunucusu</b><br>
+        IP: play.h8af.net
+    </div>
+
+    <div id="messages">
+        <div class="message">
+            <b>Sistem:</b> H8AF'e hoş geldin!
+        </div>
+    </div>
+
+    <input
+        id="messageInput"
+        type="text"
+        placeholder="Mesaj yaz...">
+
+    <button onclick="sendMessage()">
+        Gönder
+    </button>
+
+</div>
+
+<script>
+
+let currentUser = "";
+
+function login(){
+
+    const name =
+        document.getElementById("username").value;
+
+    if(name.trim() === ""){
+        alert("Kullanıcı adı gir.");
+        return;
+    }
+
+    currentUser = name;
+
+    document.getElementById("loginPage")
+        .style.display = "none";
+
+    document.getElementById("chatPage")
+        .style.display = "block";
+}
+
+function logout(){
+
+    document.getElementById("chatPage")
+        .style.display = "none";
+
+    document.getElementById("loginPage")
+        .style.display = "flex";
+}
+
+function sendMessage(){
+
+    const input =
+        document.getElementById("messageInput");
+
+    if(input.value.trim() === ""){
+        return;
+    }
+
+    const div =
+        document.createElement("div");
+
+    div.className = "message";
+
+    div.innerHTML =
+        "<b>" +
+        currentUser +
+        ":</b> " +
+        input.value;
+
+    document.getElementById("messages")
+        .appendChild(div);
+
+    input.value = "";
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.scrollTop =
+        messages.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>
+```
