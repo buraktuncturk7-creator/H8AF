@@ -131,7 +131,7 @@ button{
 
 </div>
 
-<script>
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getFirestore,
@@ -238,7 +238,9 @@ async function sendMessage(){
 
     input.value = "";
 }
-
+window.login = login;
+window.logout = logout;
+window.sendMessage = sendMessage;
 </script>
 
 </body>
