@@ -157,7 +157,39 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let currentUser = "";
+const q = query(
+    collection(db, "messages"),
+    orderBy("createdAt")
+);
 
+onSnapshot(q, (snapshot) => {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+
+        const data = doc.data();
+
+        const div =
+            document.createElement("div");
+
+        div.className = "message";
+
+        div.innerHTML =
+            "<b>" +
+            data.user +
+            ":</b> " +
+            data.text;
+
+        messages.appendChild(div);
+    });
+
+    messages.scrollTop =
+        messages.scrollHeight;
+});
 function login(){
 
     const name =
@@ -186,7 +218,7 @@ function logout(){
         .style.display = "flex";
 }
 
-function sendMessage(){
+async function sendMessage(){
 
     const input =
         document.getElementById("messageInput");
@@ -195,27 +227,16 @@ function sendMessage(){
         return;
     }
 
-    const div =
-        document.createElement("div");
-
-    div.className = "message";
-
-    div.innerHTML =
-        "<b>" +
-        currentUser +
-        ":</b> " +
-        input.value;
-
-    document.getElementById("messages")
-        .appendChild(div);
+    await addDoc(
+        collection(db, "messages"),
+        {
+            user: currentUser,
+            text: input.value,
+            createdAt: serverTimestamp()
+        }
+    );
 
     input.value = "";
-
-    const messages =
-        document.getElementById("messages");
-
-    messages.scrollTop =
-        messages.scrollHeight;
 }
 
 </script>
