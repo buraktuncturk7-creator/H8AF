@@ -288,7 +288,9 @@ async function login(){
 
     document.getElementById("chatPage")
         .style.display = "block";
-
+if(isAdmin){
+    document.getElementById("adminPanel")
+        .style.display = "block";
 }
 
 function logout(){
