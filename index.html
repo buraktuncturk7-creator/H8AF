@@ -265,6 +265,7 @@ async function login(){
     }
 
     currentUser = username;
+    isAdmin = (username === ADMIN_USERNAME);
 
     document.getElementById("loginPage")
         .style.display = "none";
