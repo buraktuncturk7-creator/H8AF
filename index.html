@@ -430,7 +430,27 @@ async function sendAnnouncement(){
             createdAt: serverTimestamp()
         }
     );
+const allAnnouncements = await getDocs(
+    query(
+        collection(db, "announcements"),
+        orderBy("createdAt")
+    )
+);
 
+if(allAnnouncements.size > 1){
+
+    const oldest =
+        allAnnouncements.docs[0];
+
+    await deleteDoc(
+        doc(
+            db,
+            "announcements",
+            oldest.id
+        )
+    );
+}
+    
     document.getElementById(
         "announcementInput"
     ).value = "";
