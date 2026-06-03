@@ -205,7 +205,34 @@ const q = query(
     collection(db, "messages"),
     orderBy("createdAt")
 );
+const announcementQuery = query(
+    collection(db, "announcements"),
+    orderBy("createdAt")
+);
 
+onSnapshot(
+    announcementQuery,
+    (snapshot) => {
+
+        const box =
+            document.getElementById(
+                "announcementBox"
+            );
+
+        box.innerHTML = "";
+
+        snapshot.forEach((doc) => {
+
+            const data = doc.data();
+
+            box.innerHTML +=
+                "<div style='background:#ff9800;padding:10px;border-radius:10px;margin-bottom:10px;'><b>📢 DUYURU:</b> "
+                + data.text +
+                "</div>";
+        });
+    }
+);
+    
 onSnapshot(q, (snapshot) => {
 
     const messages =
