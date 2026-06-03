@@ -356,24 +356,7 @@ async function register(){
         alert("Kullanıcı adı ve şifre gir.");
         return;
     }
-    function sendAnnouncement(){
-
-    const text =
-        document.getElementById(
-            "announcementInput"
-        ).value;
-
-    if(text.trim() === ""){
-        return;
-    }
-
-    document.getElementById(
-        "announcementBox"
-    ).innerHTML =
-        "<div style='background:#ff9800;padding:10px;border-radius:10px;margin-bottom:10px;'><b>📢 DUYURU:</b> "
-        + text +
-        "</div>";
-}
+  
 const userQuery = query(
     collection(db, "users"),
     where("username", "==", username)
@@ -398,12 +381,30 @@ if(!existingUsers.empty){
 
     alert("Kayıt başarılı!");
 }
+function sendAnnouncement(){
 
+    const text =
+        document.getElementById(
+            "announcementInput"
+        ).value;
+
+    if(text.trim() === ""){
+        return;
+    }
+
+    document.getElementById(
+        "announcementBox"
+    ).innerHTML =
+        "<div style='background:#ff9800;padding:10px;border-radius:10px;margin-bottom:10px;'><b>📢 DUYURU:</b> "
+        + text +
+        "</div>";
+}
 
 window.login = login;
 window.logout = logout;
 window.sendMessage = sendMessage;
-    window.register = register;
+window.register = register;
+window.sendAnnouncement = sendAnnouncement;
 </script>
 
 </body>
