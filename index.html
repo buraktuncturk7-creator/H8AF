@@ -259,7 +259,9 @@ async function sendMessage(){
     );
 
     input.value = "";
-    async function register(){
+}
+
+async function register(){
 
     const username =
         document.getElementById("username").value;
@@ -284,7 +286,8 @@ async function sendMessage(){
 
     alert("Kayıt başarılı!");
 }
-}
+
+
 window.login = login;
 window.logout = logout;
 window.sendMessage = sendMessage;
