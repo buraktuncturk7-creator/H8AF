@@ -331,6 +331,20 @@ async function register(){
 
     if(username.trim() === "" ||
        password.trim() === ""){
+        const userQuery = query(
+    collection(db, "users"),
+    where("username", "==", username)
+);
+
+const existingUsers =
+    await getDocs(userQuery);
+
+if(!existingUsers.empty){
+
+    alert("Bu kullanıcı adı zaten alınmış.");
+
+    return;
+}
 
         alert("Kullanıcı adı ve şifre gir.");
         return;
