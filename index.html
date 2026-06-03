@@ -146,9 +146,10 @@ import {
   query,
   orderBy,
   onSnapshot,
-  serverTimestamp
+  serverTimestamp,
+  getDocs,
+  where
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyCyVCJ6QvOnanx4A0wQADVtemPC9Jka_dI",
   authDomain: "h8af-8902d.firebaseapp.com",
@@ -258,10 +259,36 @@ async function sendMessage(){
     );
 
     input.value = "";
+    async function register(){
+
+    const username =
+        document.getElementById("username").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    if(username.trim() === "" ||
+       password.trim() === ""){
+
+        alert("Kullanıcı adı ve şifre gir.");
+        return;
+    }
+
+    await addDoc(
+        collection(db, "users"),
+        {
+            username: username,
+            password: password
+        }
+    );
+
+    alert("Kayıt başarılı!");
+}
 }
 window.login = login;
 window.logout = logout;
 window.sendMessage = sendMessage;
+    window.register = register;
 </script>
 
 </body>
