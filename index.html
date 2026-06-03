@@ -167,6 +167,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let currentUser = "";
+    let isAdmin = false;
+
+const ADMIN_USERNAME = "Turk_Tco";
     const savedUser = localStorage.getItem("h8af_username");
 
 if(savedUser){
