@@ -212,15 +212,60 @@ onSnapshot(q, (snapshot) => {
     messages.scrollTop =
         messages.scrollHeight;
 });
-function login(){
+async function login(){
 
-    const name =
+    const username =
         document.getElementById("username").value;
 
-    if(name.trim() === ""){
-        alert("Kullanıcı adı gir.");
+    const password =
+        document.getElementById("password").value;
+
+    if(username.trim() === "" ||
+       password.trim() === ""){
+
+        alert("Kullanıcı adı ve şifre gir.");
         return;
     }
+
+    const q = query(
+        collection(db, "users"),
+        where("username", "==", username)
+    );
+
+    const snapshot =
+        await getDocs(q);
+
+    if(snapshot.empty){
+
+        alert("Kullanıcı bulunamadı.");
+        return;
+    }
+
+    let correctPassword = false;
+
+    snapshot.forEach((doc) => {
+
+        const data = doc.data();
+
+        if(data.password === password){
+            correctPassword = true;
+        }
+    });
+
+    if(!correctPassword){
+
+        alert("Şifre yanlış.");
+        return;
+    }
+
+    currentUser = username;
+
+    document.getElementById("loginPage")
+        .style.display = "none";
+
+    document.getElementById("chatPage")
+        .style.display = "block";
+}
 
     currentUser = name;
 
