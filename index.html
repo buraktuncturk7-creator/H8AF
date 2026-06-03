@@ -541,6 +541,40 @@ if(allAnnouncements.size > 1){
     ).value = "";
 }
 
+function showPage(page){
+
+    document.getElementById("homeSection")
+        .style.display = "none";
+
+    document.getElementById("announcementSection")
+        .style.display = "none";
+
+    document.getElementById("minecraftSection")
+        .style.display = "none";
+
+    document.getElementById("chatSection")
+        .style.display = "none";
+
+    if(page === "home"){
+        document.getElementById("homeSection")
+            .style.display = "block";
+    }
+
+    if(page === "announcements"){
+        document.getElementById("announcementSection")
+            .style.display = "block";
+    }
+
+    if(page === "minecraft"){
+        document.getElementById("minecraftSection")
+            .style.display = "block";
+    }
+
+    if(page === "chat"){
+        document.getElementById("chatSection")
+            .style.display = "block";
+    }
+}    
 window.login = login;
 window.logout = logout;
 window.sendMessage = sendMessage;
