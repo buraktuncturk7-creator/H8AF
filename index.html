@@ -385,7 +385,7 @@ if(!existingUsers.empty){
 
     alert("Kayıt başarılı!");
 }
-function sendAnnouncement(){
+async function sendAnnouncement(){
 
     const text =
         document.getElementById(
@@ -396,12 +396,17 @@ function sendAnnouncement(){
         return;
     }
 
+    await addDoc(
+        collection(db, "announcements"),
+        {
+            text: text,
+            createdAt: serverTimestamp()
+        }
+    );
+
     document.getElementById(
-        "announcementBox"
-    ).innerHTML =
-        "<div style='background:#ff9800;padding:10px;border-radius:10px;margin-bottom:10px;'><b>📢 DUYURU:</b> "
-        + text +
-        "</div>";
+        "announcementInput"
+    ).value = "";
 }
 
 window.login = login;
