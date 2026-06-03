@@ -331,7 +331,12 @@ async function register(){
 
     if(username.trim() === "" ||
        password.trim() === ""){
-        const userQuery = query(
+        
+
+        alert("Kullanıcı adı ve şifre gir.");
+        return;
+    }
+const userQuery = query(
     collection(db, "users"),
     where("username", "==", username)
 );
@@ -345,11 +350,6 @@ if(!existingUsers.empty){
 
     return;
 }
-
-        alert("Kullanıcı adı ve şifre gir.");
-        return;
-    }
-
     await addDoc(
         collection(db, "users"),
         {
