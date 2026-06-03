@@ -157,6 +157,21 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let currentUser = "";
+    const savedUser = localStorage.getItem("h8af_username");
+
+if(savedUser){
+
+    currentUser = savedUser;
+
+    window.addEventListener("load", () => {
+
+        document.getElementById("loginPage")
+            .style.display = "none";
+
+        document.getElementById("chatPage")
+            .style.display = "block";
+    });
+}
 const q = query(
     collection(db, "messages"),
     orderBy("createdAt")
