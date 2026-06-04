@@ -290,6 +290,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+    if(Notification.permission !== "granted"){
+    Notification.requestPermission();
+}
 
 let currentUser = "";
     let isAdmin = false;
