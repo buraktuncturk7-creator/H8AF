@@ -300,6 +300,19 @@ const messaging = getMessaging(app);
     if(Notification.permission !== "granted"){
     Notification.requestPermission();
 }
+const vapidKey = "BURAYA_WEB_PUSH_ANAHTARINI_YAZ";
+
+getToken(messaging, {
+  vapidKey: vapidKey
+}).then((currentToken) => {
+  if (currentToken) {
+    console.log("FCM TOKEN:", currentToken);
+  } else {
+    console.log("Token alınamadı");
+  }
+}).catch((err) => {
+  console.error(err);
+});
 
 let currentUser = "";
     let isAdmin = false;
