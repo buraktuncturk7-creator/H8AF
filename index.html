@@ -300,27 +300,7 @@ const messaging = getMessaging(app);
     if(Notification.permission !== "granted"){
     Notification.requestPermission();
 }
-    const vapidKey = "BFeVfWYemARv6U-qoHr9tpvmydBA6UpGnHHjUwsZmdi2aCde1nETgcYsQZRSYl6sD4cF8xtWnveRjmMdLIdQTl0";
 
-getToken(messaging, {
-    vapidKey: vapidKey
-}).then((currentToken) => {
-
-    if (currentToken) {
-
-        console.log("FCM TOKEN:", currentToken);
-
-    } else {
-
-        console.log("Token alınamadı");
-
-    }
-
-}).catch((err) => {
-
-    console.error("FCM HATASI:", err);
-
-});
 
 
 let currentUser = "";
