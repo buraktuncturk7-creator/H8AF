@@ -322,17 +322,6 @@ getToken(messaging, {
 
 });
 
-getToken(messaging, {
-  vapidKey: vapidKey
-}).then((currentToken) => {
-  if (currentToken) {
-    console.log("FCM TOKEN:", currentToken);
-  } else {
-    console.log("Token alınamadı");
-  }
-}).catch((err) => {
-  console.error(err);
-});
 
 let currentUser = "";
     let isAdmin = false;
