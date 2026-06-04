@@ -651,6 +651,27 @@ window.sendAnnouncement = sendAnnouncement;
 
 });
 window.showPage = showPage;
+async function initNotifications() {
+
+    const permission =
+        await Notification.requestPermission();
+
+    if(permission !== "granted"){
+        return;
+    }
+
+    const token = await getToken(
+        messaging,
+        {
+            vapidKey: "BURAYA_VAPID_ANAHTARINI_YAPISTIR"
+        }
+    );
+
+    console.log("FCM TOKEN:");
+    console.log(token);
+}
+
+initNotifications();
     
 </script>
 </body>
