@@ -380,6 +380,28 @@ onSnapshot(q, (snapshot) => {
 
     messages.scrollTop =
         messages.scrollHeight;
+    
+    if(
+    Notification.permission === "granted" &&
+    snapshot.size > lastMessageCount
+){
+    const newest =
+        snapshot.docs[snapshot.docs.length - 1]
+            .data();
+
+    if(newest.user !== currentUser){
+
+        new Notification("H8AF", {
+            body:
+                newest.user +
+                ": " +
+                newest.text
+        });
+
+    }
+}
+
+lastMessageCount = snapshot.size;
 });
 async function login(){
 
