@@ -685,10 +685,16 @@ async function initNotifications() {
         return;
     }
 
+    const registration =
+        await navigator.serviceWorker.register(
+            "/H8AF/firebase-messaging-sw.js"
+        );
+
     const token = await getToken(
         messaging,
         {
-            vapidKey: "BFeVfWYemARv6U-qoHr9tpvmydBA6UpGnHHjUwsZmdi2aCde1nETgcYsQZRSYl6sD4cF8xtWnveRjmMdLIdQTl0"
+            vapidKey: "BFeVfWYemARv6U-qoHr9tpvmydBA6UpGnHHjUwsZmdi2aCde1nETgcYsQZRSYl6sD4cF8xtWnveRjmMdLIdQTl0",
+            serviceWorkerRegistration: registration
         }
     );
 
