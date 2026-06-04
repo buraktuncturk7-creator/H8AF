@@ -342,6 +342,9 @@ onSnapshot(
                 "<div style='background:#ff9800;padding:10px;border-radius:10px;margin-bottom:10px;'><b>📢 DUYURU:</b> "
                 + data.text +
                 "</div>";
+            document.getElementById(
+    "homeAnnouncement"
+).innerHTML = data.text;
         });
     }
 );
